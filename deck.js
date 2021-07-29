@@ -5,7 +5,7 @@ export default class Deck {
 	constructor(cards = freshDeck()) {
 		this.cards = cards;
 	}
-
+  
 	// getter to access number of card
 	get numberOfCards() {
 		return this.cards.length;
@@ -15,7 +15,7 @@ export default class Deck {
 	shuffle() {
 		for (let i = this.numberOfCards - 1; i > 0; i--) {
 			const newIndex = Math.floor(Math.random() * (i + 1));
-      // oldValue is an intermediate value before we update this.cards[i]
+			// oldValue is an intermediate value before we update this.cards[i]
 			const oldValue = this.cards[newIndex];
 			this.cards[newIndex] = this.cards[i];
 			this.cards[i] = oldValue;
@@ -25,8 +25,21 @@ export default class Deck {
 
 class Card {
 	constructor(suit, value) {
-		this.suite = suit;
+		this.suit = suit;
 		this.value = value;
+	}
+
+	//get function to get color property as output
+	get color() {
+		return this.suit === "♣" || this.suit === "♠" ? "black" : "red";
+	}
+
+	getHTML() {
+		const carDiv = document.createElement("div");
+		carDiv.innerText = this.suit;
+		carDiv.classList.add("card", this.color);
+		carDiv.dataset.value = `${this.value} ${this.suit}`;
+		return carDiv;
 	}
 }
 
