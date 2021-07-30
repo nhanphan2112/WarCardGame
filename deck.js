@@ -5,11 +5,21 @@ export default class Deck {
 	constructor(cards = freshDeck()) {
 		this.cards = cards;
 	}
-  
+
 	// getter to access number of card
 	get numberOfCards() {
 		return this.cards.length;
 	}
+
+	// function to pop card when user click to return top card using function shift on computer and player deck
+	pop() {
+    return this.cards.shift();
+  }
+  // function to add one card to the bottom of the computer and player deck
+  push(card){
+    this.cards.push(card);
+  }
+
 
 	// function to shuffle deck of cards
 	shuffle() {
@@ -21,6 +31,9 @@ export default class Deck {
 			this.cards[i] = oldValue;
 		}
 	}
+
+
+
 }
 
 class Card {
